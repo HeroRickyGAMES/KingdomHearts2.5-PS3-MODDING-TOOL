@@ -1,0 +1,25 @@
+# Square Enix - Kingdom Hearts HD 1.5 ReMix *.mself
+# by Falo
+# script for QuickBMS http://quickbms.aluigi.org
+# Note: All files are encrypted with sdata V4
+
+endian big
+
+idstring "MSF"
+
+goto 0x10
+get numFiles long
+get ofsTable long
+goto ofsTable
+
+for x = 0 < numFiles
+
+GetDString Name 0x20
+get Offset LONGLONG
+get Size LONGLONG
+get empty LONGLONG
+get empty LONGLONG
+
+log Name Offset Size
+
+next x

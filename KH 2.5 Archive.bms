@@ -1,0 +1,26 @@
+# Square Enix - Kingdom Hearts HD 2.5 ReMix Archives
+# by Crazycatz
+# script for QuickBMS http://quickbms.aluigi.org
+
+endian big
+
+get Size LONG
+get H_Files LONG
+goto 8 0 SEEK_CUR
+
+# xmath fails for me ~.~
+math Offset = H_Files
+math Offset *= 48
+math Offset += 16
+get Name BASENAME
+string Name += ".bin"
+log Name Offset Size
+
+for i = 0x0 < H_Files
+ GetDString Name 0x20
+ get Offset LONG
+ get Unknown LONG
+ get Size LONG
+ goto 4 0 SEEK_CUR
+ log Name Offset Size
+next i
